@@ -1,0 +1,409 @@
+<modification>
+    <name>Delivery Plus</name>
+    <code>LouiseDostavkaPlus</code>
+    <version>3.4</version>
+    <author>louise170 (louise@ya.ru)</author>
+    <link><![CDATA[https://opencartforum.com/files/file/1237-доставка-плюс/]]></link>
+
+    <!-- Common -->
+    <file path="catalog/view/theme/*/template/checkout/shipping_method.tpl">
+        <operation error="log">
+            <search><![CDATA[
+                <?php echo $quote['title']; ?>
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <?php if (isset($quote['image']) and !empty($quote['image']) ) { ?>
+                    <img src="<?php echo HTTP_IMAGE.$quote['image'];?>" />
+                <?php
+                }
+
+                echo $quote['title'];
+
+                if (isset($quote['error']) and $quote['error'] != false and $quote['error'] != true) {
+                    echo '<br/>'.$quote['error'];
+                }
+                ?>
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[
+                <?php foreach ($shipping_method['quote'] as $quote) { ?>
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <?php foreach ($shipping_method['quote'] as $quote) {
+                    if (isset($quote['error']) and $quote['error'] == true) {
+                        $local_class = ' class="" disabled="disabled" ';
+                    }
+                    else {
+                        $local_class = "";
+                    }
+                ?>
+                ]]>
+            </add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[
+                <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" checked="checked" />
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" checked="checked" <?php echo $local_class; ?> />
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[
+                <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" />
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" <?php echo $local_class; ?> />
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[
+                <?php echo $quote['text']; ?></label>
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <?php echo $quote['text']; ?> </label>
+
+                <?php if (!empty($quote['description'])) { ?>
+                    <br/><label for="<?php echo $quote['code']; ?>"><?php echo $quote['description']; ?></label>
+                <?php } ?>
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/{cart,confirm}.php">
+        <operation error="skip">
+            <search><![CDATA[
+                array_multisort($sort_order, SORT_ASC, $total_data);
+            ]]>
+            </search>
+            <add position="before"><![CDATA[
+                if (isset($this->session->data['shipping_method']['text']) and !empty($this->session->data['shipping_method']['text'])) {
+                    foreach ($total_data as $k => $v) {
+                        if ($v['code'] == 'shipping') {
+                            $total_data[$k]['text'] = $this->session->data['shipping_method']['text'];
+                        }
+                    }
+                }
+            ]]>
+            </add>
+        </operation>
+    </file>
+    <!--// Common -->
+
+    <!-- Simple-->
+    <file path="catalog/view/theme/*/template/checkout/simplecheckout_shipping.tpl">
+        <operation error="skip">
+             <ignoreif regex="false"><![CDATA[
+                <img src="<?php echo HTTP_IMAGE.$quote['image'];?>" class="1"/>
+            ]]>
+            </ignoreif>
+            <search><![CDATA[
+                echo $quote['title'];
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                if (isset($quote['image']) and !empty($quote['image']) ) {
+                ?>
+                    <img src="<?php echo HTTP_IMAGE.$quote['image'];?>" class="1"/>
+                <?php
+                    echo '<span style="vertical-align:10px;">'.$quote['title'].'</span>';
+                }
+                else {
+                    echo $quote['title'];
+                }
+
+                if (isset($quote['error']) and $quote['error'] != false and $quote['error'] != true) {
+                    echo '<br/>'.$quote['error'];
+                }
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="skip">
+             <ignoreif regex="false"><![CDATA[
+                <input type="radio" name="shipping_method" class=""
+            ]]>
+            </ignoreif>
+            <search><![CDATA[
+                <input type="radio" name="shipping_method"
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <?php if (isset($quote['error']) and $quote['error'] != false) {
+                    ?><input type="radio" name="shipping_method" class="" disabled="disabled" <?php
+                } else {
+                ?><input type="radio" name="shipping_method" class="" <?php
+                }?>
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="skip">
+             <ignoreif regex="false"><![CDATA[
+                <img src="<?php echo HTTP_IMAGE.$quote['image'];?>" class="2"/>
+            ]]>
+            </ignoreif>
+            <search>
+                <![CDATA[
+                echo !empty($quote['title']) ? $quote['title'] : '';
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                if (isset($quote['image']) and !empty($quote['image']) ) {
+                ?>
+                    <img src="<?php echo HTTP_IMAGE.$quote['image'];?>" class="2"/>
+                <?php
+                    if (!empty($quote['title'])) {
+                        echo '<span style="vertical-align:10px;">'.$quote['title'].'</span>';
+                    }
+                }
+                else {
+                    echo !empty($quote['title']) ? $quote['title'] : '';
+                }
+
+                if (isset($quote['error']) and $quote['error'] != false and $quote['error'] != true) {
+                    echo '<br/>'.$quote['error'];
+                }
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="skip">
+             <ignoreif regex="false"><![CDATA[
+                <input type="radio" data-onchange="reloadAll" name="shipping_method" class=""
+            ]]>
+            </ignoreif>
+            <search>
+                <![CDATA[
+                <input type="radio" data-onchange="reloadAll" name="shipping_method"
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <?php if (isset($quote['error']) and $quote['error'] != false) {
+                    ?><input type="radio" data-onchange="reloadAll" name="shipping_method" class="" disabled="disabled" <?php
+                } else {
+                ?><input type="radio" data-onchange="reloadAll" name="shipping_method" class="" <?php
+                }?>
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/language/russian/russian.php">
+        <operation error="skip">
+            <search><![CDATA[
+                ?>
+            ]]>
+            </search>
+            <add position="before"><![CDATA[
+                $_['text_image_manager']      = 'Менеджер изображений';
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/language/english/english.php">
+        <operation error="skip">
+            <search><![CDATA[
+                ?>
+            ]]>
+            </search>
+            <add position="before"><![CDATA[
+                $_['text_image_manager']      = 'Image Manager';
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/simplecheckout_shipping.php">
+        <operation error="skip">
+            <search><![CDATA[
+                $simple_links = !empty($simple_links) && is_array($simple_links) ? $simple_links : array();
+            ]]>
+            </search>
+            <add position="after"><![CDATA[
+                $new_simple_links = array();
+                $arr_keys = array();
+                $arr_new_keys = array();
+
+                foreach($simple_links as $key => $val) {
+                    $arr_keys[] = $key;
+                }
+
+                foreach($arr_keys as $key => $val) {
+                    $find = false;
+                    foreach($arr_keys as $k => $v) {
+                        if ($key != $k and strstr($v,$val.'.') and !in_array($v,$arr_new_keys)) {
+                            $arr_new_keys[] = $v;
+                            $find = true;
+                        }
+                    }
+
+                    if ($find == false and !in_array($val,$arr_new_keys)) {
+                        $arr_new_keys[] = $val;
+                    }
+                }
+
+                foreach ($arr_new_keys as $value) {
+                    $new_simple_links[$value] = $simple_links[$value];
+                }
+
+                $simple_links = $new_simple_links;
+
+                //print_r($simple_links);
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="skip">
+            <search><![CDATA[
+                $quote_data[$result['code']]
+            ]]>
+            </search>
+            <add position="before"><![CDATA[
+                if ($this->config->get('simple_childs_payment_first') && is_array($quote['quote'])) {
+                    $new_quote = array();
+
+                    foreach ($quote['quote'] as $k => $v) {
+                        if (array_key_exists($v['code'], $simple_links)) {
+                            $for_payment_methods_new = explode(",",$simple_links[$v['code']]);
+
+                            if (in_array($payment_method_code,$for_payment_methods_new)) {
+                                $new_quote[$k] = $v;
+                            }
+                        }
+                    }
+
+                    if (!empty($new_quote)) {
+                        $quote['quote'] = $new_quote;
+                    }
+                }
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/{simplecheckout,simplecheckout_cart}.php">
+        <operation error="skip">
+            <search><![CDATA[
+                array_multisort($sort_order, SORT_ASC, $total_data);
+            ]]>
+            </search>
+            <add position="before"><![CDATA[
+                if (isset($this->session->data['shipping_method']['text']) and !empty($this->session->data['shipping_method']['text'])) {
+                    foreach ($total_data as $k => $v) {
+                        if ($v['code'] == 'shipping') {
+                            $total_data[$k]['text'] = $this->session->data['shipping_method']['text'];
+                        }
+                    }
+                }
+            ]]>
+            </add>
+        </operation>
+    </file>
+    <!--// Simple -->
+
+    <!-- SuperCheckout и SuperCheckoutPRO -->
+    <file path="catalog/controller/supercheckout*/{supercheckout*,confirm}.php">
+        <operation error="skip">
+            <search><![CDATA[
+                array_multisort($sort_order, SORT_ASC, $total_data);
+            ]]>
+            </search>
+            <add position="before"><![CDATA[
+                if (isset($this->session->data['shipping_method']['text']) and !empty($this->session->data['shipping_method']['text'])) {
+                    foreach ($total_data as $k => $v) {
+                        if ($v['code'] == 'shipping') {
+                            $total_data[$k]['text'] = $this->session->data['shipping_method']['text'];
+                        }
+                    }
+                }
+            ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/*/template/supercheckout*/shipping_method.tpl">
+        <operation error="skip">
+             <ignoreif regex="false"><![CDATA[
+                <img src="<?php echo HTTP_IMAGE.$quote['image'];?>"/>
+            ]]>
+            </ignoreif>
+            <search><![CDATA[
+                echo $quote['title'];
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                if (isset($quote['image']) and !empty($quote['image']) ) {
+                ?>
+                    <img src="<?php echo HTTP_IMAGE.$quote['image'];?>"/>
+                <?php
+                    echo '<span style="vertical-align:50px;">'.$quote['title'].'</span>';
+                }
+                else {
+                    echo $quote['title'];
+                }
+
+                if (isset($quote['error']) and $quote['error'] != false and $quote['error'] != true) {
+                    echo '<br/>'.$quote['error'];
+                }
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="skip">
+             <ignoreif regex="false"><![CDATA[
+                <input type="radio" name="shipping_method" class=""
+            ]]>
+            </ignoreif>
+            <search><![CDATA[
+                <input type="radio" name="shipping_method"
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <?php if (isset($quote['error']) and $quote['error'] != false) {
+                    ?><input type="radio" name="shipping_method" class="" disabled="disabled" <?php
+                } else {
+                ?><input type="radio" name="shipping_method" class="" <?php
+                }?>
+            ]]>
+            </add>
+        </operation>
+
+        <operation error="skip">
+             <ignoreif regex="false"><![CDATA[
+                <label for="<?php echo $quote['code']; ?>"><?php echo $quote['description']; ?></label>
+            ]]>
+            </ignoreif>
+            <search><![CDATA[
+                <?php echo $quote['text']; ?></label>
+            ]]>
+            </search>
+            <add position="replace"><![CDATA[
+                <?php echo $quote['text']; ?></label>
+
+                <?php if (!empty($quote['description'])) { ?>
+                    <br/><label><?php echo $quote['description']; ?></label>
+                <?php } ?>
+            ]]>
+            </add>
+        </operation>
+    </file>
+    <!--// SuperCheckout и SuperCheckoutPRO -->
+
+</modification>
+

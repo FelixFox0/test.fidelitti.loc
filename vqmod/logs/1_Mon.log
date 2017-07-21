@@ -1,0 +1,177 @@
+---------- Date: 2017-07-03 13:59:55 ~ IP : 213.231.53.124 ----------
+REQUEST URI : /admin/index.php?route=extension/modification&token=dkHiESkGzk5OLLyfyQusM3Qz7mHZVpVI
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/dostavkaplus.ocmod.xml
+   id        : 
+   version   : 3.4
+   vqmver    : 
+   author    : louise170 (louise@ya.ru)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{cart,confirm}.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/russian/russian.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/english/english.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{simplecheckout,simplecheckout_cart}.php] (SKIPPED)
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/zitec_dpd.ocmod.xml
+   id        : Zitec DPD - VQMod verion extension
+   version   : 1.0.1
+   vqmver    : 2.x
+   author    : Zitec
+VQModObject::parseMods - Could not resolve path for [admin/language/ro-ro/ro-ro.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/menu.tpl] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/menu.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/en-gb/common/menu.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-07-03 14:18:11 ~ IP : 213.231.53.124 ----------
+REQUEST URI : /admin/index.php?route=extension/modification&token=McPc4vbe50x5355mtyDL7p7ZzU16n2BX
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/dostavkaplus.ocmod.xml
+   id        : 
+   version   : 3.4
+   vqmver    : 
+   author    : louise170 (louise@ya.ru)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{cart,confirm}.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/russian/russian.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/english/english.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{simplecheckout,simplecheckout_cart}.php] (SKIPPED)
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/zitec_dpd.ocmod.xml
+   id        : Zitec DPD - VQMod verion extension
+   version   : 1.0.1
+   vqmver    : 2.x
+   author    : Zitec
+VQModObject::parseMods - Could not resolve path for [admin/language/ro-ro/ro-ro.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/menu.tpl] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/menu.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/en-gb/common/menu.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-07-03 14:20:33 ~ IP : 213.231.53.124 ----------
+REQUEST URI : /admin/index.php?route=extension/modification&token=McPc4vbe50x5355mtyDL7p7ZzU16n2BX
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/dostavkaplus.ocmod.xml
+   id        : 
+   version   : 3.4
+   vqmver    : 
+   author    : louise170 (louise@ya.ru)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{cart,confirm}.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/russian/russian.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/english/english.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{simplecheckout,simplecheckout_cart}.php] (SKIPPED)
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/zitec_dpd.ocmod.xml
+   id        : Zitec DPD - VQMod verion extension
+   version   : 1.0.1
+   vqmver    : 2.x
+   author    : Zitec
+VQModObject::parseMods - Could not resolve path for [admin/language/ro-ro/ro-ro.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/menu.tpl] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/menu.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/en-gb/common/menu.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-07-03 14:23:47 ~ IP : 213.231.53.124 ----------
+REQUEST URI : /admin/index.php?route=extension/modification&token=McPc4vbe50x5355mtyDL7p7ZzU16n2BX
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/dostavkaplus.ocmod.xml
+   id        : 
+   version   : 3.4
+   vqmver    : 
+   author    : louise170 (louise@ya.ru)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{cart,confirm}.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/russian/russian.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/english/english.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{simplecheckout,simplecheckout_cart}.php] (SKIPPED)
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/zitec_dpd.ocmod.xml
+   id        : Zitec DPD - VQMod verion extension
+   version   : 1.0.1
+   vqmver    : 2.x
+   author    : Zitec
+VQModObject::parseMods - Could not resolve path for [admin/language/ro-ro/ro-ro.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/menu.tpl] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/menu.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/en-gb/common/menu.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-07-03 14:25:26 ~ IP : 185.32.62.242 ----------
+REQUEST URI : /dlya-zhenshchin/sumki/
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/product_series_template_default.xml
+   id        : Product Series - template - default
+   version   : 1.6
+   vqmver    : 2.1.6
+   author    : WeDoWeb.com.au | contact@wedoweb.com.au
+
+File Name    : catalog/view/theme/fidelitti/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <a href="<?php echo $product['href']; ?>">
+            <div class="sub_category__product--line"></div>
+          </a>
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-07-03 14:35:33 ~ IP : 213.231.53.124 ----------
+REQUEST URI : /admin/index.php?route=extension/modification&token=yDq07HzDTJILeDwMTsi9qs7x1JSl5wFj
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/dostavkaplus.ocmod.xml
+   id        : 
+   version   : 3.4
+   vqmver    : 
+   author    : louise170 (louise@ya.ru)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{cart,confirm}.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/russian/russian.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/english/english.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [catalog/controller/checkout/{simplecheckout,simplecheckout_cart}.php] (SKIPPED)
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/zitec_dpd.ocmod.xml
+   id        : Zitec DPD - VQMod verion extension
+   version   : 1.0.1
+   vqmver    : 2.x
+   author    : Zitec
+VQModObject::parseMods - Could not resolve path for [admin/language/ro-ro/ro-ro.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/view/template/common/menu.tpl] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/controller/common/menu.php] (SKIPPED)
+VQModObject::parseMods - Could not resolve path for [admin/language/en-gb/common/menu.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-07-03 14:36:28 ~ IP : 213.231.53.124 ----------
+REQUEST URI : /dlya-zhenshchin/sumki/
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/product_series_template_default.xml
+   id        : Product Series - template - default
+   version   : 1.6
+   vqmver    : 2.1.6
+   author    : WeDoWeb.com.au | contact@wedoweb.com.au
+
+File Name    : catalog/view/theme/fidelitti/template/product/category.tpl(0)
+VQModObject::applyMod - SEARCH NOT FOUND (SKIPPED): <a href="<?php echo $product['href']; ?>">
+            <div class="sub_category__product--line"></div>
+          </a>
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-07-03 16:17:43 ~ IP : 185.32.62.242 ----------
+REQUEST URI : /index.php?route=checkout/simplecheckout&group=0
+MOD DETAILS:
+   modFile   : /var/www/user3794/data/www/test.fidelitti.com/vqmod/xml/zitec_dpd.ocmod.xml
+   id        : Zitec DPD - VQMod verion extension
+   version   : 1.0.1
+   vqmver    : 2.x
+   author    : Zitec
+
+File Name    : catalog/model/checkout/order.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $this->event->trigger('post.order.add', $order_id);
+
+----------------------------------------------------------------------
+
+

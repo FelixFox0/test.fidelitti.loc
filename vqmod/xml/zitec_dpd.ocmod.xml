@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+<id>Zitec DPD - VQMod verion extension</id>
+<version>1.0.1</version>
+<vqmver>2.x</vqmver>
+<author>Zitec</author>
+<code>00002</code>
+
+
+    <file path="admin/language/en-gb/en-gb.php">
+        <operation>
+            <search><![CDATA[$_['error_upload_999']              = 'Warning: No error code available!';]]></search>
+            <add position="before">
+                <![CDATA[
+                $_['Shipping settings']                 = 'Shipping settings';
+                $_['Payment settings']                  = 'Payment settings';
+                $_['Table rates']                       = 'Table rates';
+                $_['Shipments']                         = 'Shipments';
+                $_['DPD carrier']                       = 'DPD carrier';
+                $_['tab_shipment_management']           = 'Shipment Management';
+                $_['shipment_management_message']		= 'DPD shipping carrier detected an other postcode for current address. You can validate this postcode before scheduling deliveries by clicking the edit button or %s';
+                $_['shipment_management_here']          = 'Here';
+                $_['shipment_management_warning']		= 'DPD shipping carrier requirements: The length of address provided by your customer is too long. Please provide a maximum 70 characters length address (street field).';
+                $_['shipment_management_group']			= 'Group the products in your shipment into parcels';
+                $_['shipment_management_description']	= 'This module lets you organize your products into parcels using the table below. If you like you can, leave some parcels empty, and the system will not take them into account.';
+                $_['tab_shipping_method']           	= 'Shipping Method';
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="admin/language/ro-ro/ro-ro.php">
+        <operation>
+            <search><![CDATA[?>]]></search>
+            <add position="before">
+                <![CDATA[
+                $_['Shipping settings']                 = 'Setari livrare';
+                $_['Payment settings']                  = 'Setari plata';
+                $_['Table rates']                       = 'Tabel de taxare';
+                $_['Shipments']                         = 'Livrari';
+                $_['DPD carrier']                       = 'Livrari DPD';
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+
+    <file path="admin/view/template/common/menu.tpl">
+        <operation>
+            <search><![CDATA[<li><a class="parent"><i class="fa fa-share-alt fa-fw"></i> <span><?php echo $text_marketing; ?></span></a>]]></search>
+                <add position="before">
+                    <![CDATA[
+                        <li><a class="parent"><i class="fa fa-reply-all fa-fw"></i><span><?php echo $text_dpd_carrier; ?></span></a>
+                            <ul>
+                                <li><a href="<?php echo $shipping_zitec_dpd; ?>"><?php echo $text_dpd_carrier; ?></a></li>
+                                <li><a href="<?php echo $shipping_zitec_dpd_shipping_settings; ?>"><?php echo $text_shipping_settings; ?></a></li>
+                                <li><a href="<?php echo $shipping_zitec_dpd_payment_settings; ?>"><?php echo $text_payment_settings; ?></a></li>
+                                <li><a href="<?php echo $shipping_zitec_dpd_table_rates; ?>"><?php echo $text_table_rates; ?></a></li>
+                                <li><a href="<?php echo $dpd_postcode_updateForm; ?>"><?php echo $text_postcode_upgrade; ?></a></li>
+                                <li><a href="<?php echo $dpd_shipment_list_index; ?>"><?php echo $text_shipment; ?></a></li>
+                            </ul>
+                        </li>
+                    ]]>
+                </add>
+        </operation>
+    </file>
+
+     <file path="admin/controller/common/menu.php">
+        <operation>
+            <search><![CDATA[return $this->load->view('common/menu', $data);]]></search>
+                <add position="before">
+                    <![CDATA[
+                        $data['text_dpd_carrier'] = $this->language->get('text_dpd_carrier');
+                        $data['text_shipping_settings'] = $this->language->get('text_shipping_settings');
+                        $data['text_payment_settings'] = $this->language->get('text_payment_settings');
+                        $data['text_table_rates'] = $this->language->get('text_table_rates');
+                        $data['text_upgrade'] = $this->language->get('text_upgrade');
+                        $data['text_postcode_upgrade'] = $this->language->get('text_postcode_upgrade');
+                        $data['text_shipment'] = $this->language->get('text_shipment');
+                        $data['shipping_zitec_dpd'] = $this->url->link('shipping/zitec_dpd', 'token=' . $this->session->data['token'], 'SSL');
+                        $data['shipping_zitec_dpd_shipping_settings'] = $this->url->link('shipping/zitec_dpd/shipping_settings', 'token=' . $this->session->data['token'], 'SSL');
+                        $data['shipping_zitec_dpd_payment_settings'] = $this->url->link('shipping/zitec_dpd/payment_settings', 'token=' . $this->session->data['token'], 'SSL');
+                        $data['shipping_zitec_dpd_table_rates'] = $this->url->link('shipping/zitec_dpd/table_rates', 'token=' . $this->session->data['token'], 'SSL');
+                        $data['dpd_postcode_updateForm'] = $this->url->link('dpd/postcode/updateForm', 'token=' . $this->session->data['token'], 'SSL');
+                        $data['dpd_shipment_list_index'] = $this->url->link('dpd/shipment_list/index', 'token=' . $this->session->data['token'], 'SSL');
+                     ]]>
+                </add>
+        </operation>
+    </file>
+
+     <file path="admin/language/en-gb/common/menu.php">
+        <operation>
+            <search><![CDATA[$_['text_paypal_search']               = 'Search';]]></search>
+                <add position="after">
+                     <![CDATA[
+                        $_['text_dpd_carrier']                 = 'DPD Carrier';
+                        $_['text_shipping_settings']           = 'Shipping Settings';
+                        $_['text_payment_settings']            = 'Payment Settings';
+                        $_['text_table_rates']                 = 'Table Rates';
+                        $_['text_upgrade']                     = 'Upgrade to a newer version';
+                        $_['text_shipment']                    = 'Shipments List';
+                        $_['text_postcode_upgrade']            = 'Postcode Update Manager';
+                    ]]>
+
+                </add>
+        </operation>
+    </file>
+
+     <file path="admin/view/template/sale/order_form.tpl">
+        <operation>
+            <search><![CDATA[<script type="text/javascript"><!--]]></search>
+                <add position="before">
+                     <![CDATA[
+                        <script type="text/javascript">
+                            var shipmentUrl = '<?php echo $shipmentUrl; ?>';
+                            var dpdSearchButtons = '<?php echo $dpdSearchButtons; ?>';
+                            var dpd_search_postcode_empty_result_alert = '<?php echo $dpd_search_postcode_empty_result_alert; ?>';
+                            var dpd_address_validation_length = '<?php echo $dpd_address_validation_length; ?>';
+                            var isDPDShippingMethod;
+
+                            <?php if(isset($isDPDShippingMethod)) { ?>
+                                isDPDShippingMethod = '<?php echo $isDPDShippingMethod?1:0; ?>';
+                            <?php } ?>
+                        </script>
+                    ]]>
+                </add>
+        </operation>
+        <operation>
+        	<search><![CDATA[$('#button-shipping-method').button('reset');]]></search>
+        	<add position="after" offset="2">
+        		<![CDATA[dpdUpdatePaymentMethods('<?php echo $text_select; ?>');]]>
+        	</add>
+        </operation>
+    </file>
+
+     <file path="admin/view/template/sale/order_info.tpl">
+        <operation>
+            <search><![CDATA[<div class="pull-right">]]></search>
+                <add position="after">
+                    <![CDATA[
+                        <a id="shipment_management_button" class="btn btn-default" href="<?php echo $dpd_shipment_index; ?>"><?php echo $text_shipment_management; ?></a>
+                        <script type="text/javascript">
+                            var shipmentUrl = '<?php echo $shipmentUrl; ?>';
+                            var dpdSearchButtons = '<?php echo $dpdSearchButtons; ?>';
+                            var dpd_search_postcode_empty_result_alert = '<?php echo $dpd_search_postcode_empty_result_alert; ?>';
+                            var dpd_address_validation_length = '<?php echo $dpd_address_validation_length; ?>';
+                            var isDPDShippingMethod;
+
+                            <?php if(isset($isDPDShippingMethod)) { ?>
+                                isDPDShippingMethod = '<?php echo $isDPDShippingMethod?1:0; ?>';
+                            <?php } ?>
+                        </script>
+                    ]]>
+                </add>
+        </operation>
+        <operation>
+        	<search index="5"><![CDATA[<div class="panel panel-default">]]></search>
+        	<add position="before"><![CDATA[
+        	    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-info-circle"></i>
+                            <a href="#tab-shipment-management" id="tab-shipments-button" data-toggle="tab"><?php echo $tab_shipment_management; ?></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <?php echo $dpd_shipment_management_status; ?>
+                        <div class="tab-pane" id="tab-shipment-management"></div>
+                    </div>
+        	    </div>
+        	    ]]>
+            </add>
+        </operation>
+        <operation>
+        	<search><![CDATA[  <div class="container-fluid">]]></search>
+        	<add position="after">
+        		<![CDATA[
+	        	  <?php if ($success) { ?>
+					  <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
+					      <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  </div>
+					  <?php } ?>
+  				]]>
+  		</add>
+        </operation>
+    </file>
+
+     <file path="admin/language/en-gb/sale/order.php">
+        <operation>
+            <search><![CDATA[$_['error_filetype']			 = 'Invalid file type!';]]></search>
+                <add position="after">
+                     <![CDATA[
+                        $_['text_shipment_management'] = 'Shipment Management';
+                        $_['dpdSearchButtons'] = 'DPD - search postcode';
+                        $_['dpd_search_postcode_empty_result_alert'] = 'There were no suggestions to the address given county. Please enter post code manually.';
+                        $_['dpd_address_validation_length'] = 'Address length should be less then 70 characters.';
+                     ]]>
+                </add>
+        </operation>
+    </file>
+
+     <file path="admin/controller/sale/order.php">
+        <operation>
+            <search index="1"><![CDATA[$data['token'] = $this->session->data['token'];]]></search>
+                <add position="after">
+                     <![CDATA[
+                        $data['text_shipment_management'] = $this->language->get('text_shipment_management');
+                        $data['dpd_shipment_index'] = $this->url->link('dpd/shipment/index', 'token=' . $this->session->data['token'] . '&order_id=' . $filter_order_id, 'SSL');
+                        $data['tab_shipment_management'] = $this->language->get('tab_shipment_management');
+                     ]]>
+                </add>
+        </operation>
+         <operation>
+             <search index="2,3"><![CDATA[$data['token'] = $this->session->data['token'];]]></search>
+                 <add position="after">
+                     <![CDATA[
+                        $data['text_shipment_management'] = $this->language->get('text_shipment_management');
+                        $data['dpd_shipment_index'] = $this->url->link('dpd/shipment/index', 'token=' . $this->session->data['token'] . '&order_id=' . $this->request->get['order_id'], 'SSL');
+                        $data['tab_shipment_management'] = $this->language->get('tab_shipment_management');
+
+                        $this->load->model('module/dpd/shipment');
+                        $data['dpd_shipment_management_status'] = $this->model_module_dpd_shipment->getShipmentInfo();
+                     ]]>
+                 </add>
+         </operation>
+        <operation>
+            <search><![CDATA[$data['shipping_code'] = $order_info['shipping_code'];]]></search>
+                <add position="after">
+                    <![CDATA[ 
+                        $data['dpd_shipment_index'] = $this->url->link('dpd/shipment/index', 'token=' . $this->session->data['token'] . '&order_id=' . $data['order_id'], 'SSL');
+                        $data['dpdSearchButtons'] = $this->language->get('dpdSearchButtons');
+                        $data['dpd_search_postcode_empty_result_alert'] = $this->language->get('dpd_search_postcode_empty_result_alert');
+                        $data['dpd_address_validation_length'] = $this->language->get('dpd_address_validation_length');
+                        $data['shipmentUrl'] = $this->url->link('dpd/shipment/find_postcode'. '&token=' . $this->session->data['token'], '', 'SSL');
+                        $data['text_shipment_management'] = $this->language->get('text_shipment_management');
+                    ]]>
+                </add>
+        </operation>
+        <operation>
+            <search><![CDATA[public function info() {]]></search>
+                <add position="after">
+                    <![CDATA[
+                        $this->document->addScript('view/javascript/zitec_dpd/order_info.js');
+                        $this->document->addScript('view/javascript/zitec_dpd/loading-overlay.js');
+                        $this->document->addStyle('view/stylesheet/zitec_dpd/overlay.css');
+                        $data['dpdSearchButtons'] = $this->language->get('dpdSearchButtons');
+                    ]]>
+                </add>
+        </operation>
+        <operation>
+        	<search><![CDATA[$data['tab_total'] = $this->language->get('tab_total');]]></search>
+        	<add position="after">
+        		<![CDATA[
+        		 	$data['language'] = $this->language;
+                    $data['url'] = $this->url;
+                    $data['dpdSearchButtons'] = $this->language->get('dpdSearchButtons');
+			        $data['dpd_search_postcode_empty_result_alert'] = $this->language->get('dpd_search_postcode_empty_result_alert');
+			        $data['dpd_address_validation_length'] = $this->language->get('dpd_address_validation_length');
+			        $data['shipmentUrl'] = $this->url->link('dpd/shipment/find_postcode'. '&token=' . $this->session->data['token'], '', 'SSL');
+        		]]>
+        	</add>
+        </operation>
+        <operation>
+            <search><![CDATA[$order_info = $this->model_sale_order->getOrder($this->request->get['order_id']); ]]></search>
+                <add position="after">
+                    <![CDATA[
+                        $this->load->model('module/dpd/helper');
+                        $isDPDShippingMethod = $this->model_module_dpd_helper->orderHasDPDShippingMethod($order_info);
+                        $data['isDPDShippingMethod'] = $isDPDShippingMethod;
+                    ]]>
+                </add>
+        </operation>
+        <operation>
+        	<search><![CDATA[$customer_group_info = $this->model_customer_customer_group->getCustomerGroup($order_info['customer_group_id']);]]></search>
+        	<add position="before"><![CDATA[
+        		if (isset($this->session->data['success'])) {
+	                $data['success'] = $this->session->data['success'];
+	                unset($this->session->data['success']);
+	            } else {
+	                $data['success'] = '';
+	            }
+            ]]></add>
+        </operation>
+        <operation>
+        	<search><![CDATA[$custom_fields = $this->model_customer_custom_field->getCustomFields($filter_data);]]></search>
+        	<add position="after">
+        		<![CDATA[
+        			  	$this->document->addScript('view/javascript/zitec_dpd/edit_order.js');
+				        $this->document->addScript('view/javascript/zitec_dpd/loading-overlay.js');
+				        $this->document->addStyle('view/stylesheet/zitec_dpd/overlay.css');
+				        $this->document->addStyle('view/stylesheet/zitec_dpd/address-autocomplete.css');
+        		]]>
+        	</add>
+        </operation>
+    </file>
+
+	<file path="catalog/controller/api/order.php">
+		<operation>
+            <search><![CDATA[$this->model_checkout_order->editOrder($order_id, $order_data);]]></search>
+                <add position="after">
+                    <![CDATA[
+                        $this->load->model('module/dpd/postcode');
+                        $this->model_module_dpd_postcode->afterOrderUpdate($this->request->get['order_id'], $order_data);
+                    ]]>
+                </add>
+        </operation>
+	</file>
+
+     <file path="catalog/view/theme/default/template/account/order_list.tpl">
+        <operation>
+            <search><![CDATA[<?php } ?>]]></search>
+                <add position="before" index="3">
+                    <![CDATA[ 
+                        <div class="order-info">
+                            <?php $trackingUrl = $traking_model->getTrackingUrlByOrder($order['order_id']); ?>
+                            <?php if(!empty($trackingUrl)){ ?>
+                                <a target="_blank" href="<?php echo $trackingUrl; ?>"><img src="catalog/view/theme/default/image/delivery.gif" alt="<?php echo $language->get('Track order');?>" title="<?php echo $language->get('Track order');?>"></a>
+                            <?php } ?>
+                        </div>
+                      ]]>
+                </add>
+        </operation>
+    </file>
+
+     <file path="catalog/controller/account/order.php">
+        <operation>
+            <search><![CDATA[public function index() {]]></search>
+                <add position="after">
+                    <![CDATA[
+                        $this->load->model('module/dpd/shipment_tracking');
+                        $this->data['traking_model'] = $this->model_module_dpd_shipment_tracking;
+                        $this->data['url'] = $this->url;
+                        $this->data['language'] = $this->language;
+                    ]]>
+                </add>
+        </operation>
+    </file>
+
+     <file path="catalog/model/checkout/order.php">
+        <operation>
+            <search><![CDATA[$this->event->trigger('post.order.add', $order_id);]]></search>
+                <add position="after">
+                    <![CDATA[
+                        $this->load->model('module/dpd/postcode');
+                        $this->model_module_dpd_postcode->afterCheckoutOrderSave($order_id, $data);
+                    ]]>
+                </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/checkout/checkout.php">
+        <operation>
+            <search><![CDATA[public function index() {]]></search>
+            <add position="after">
+                <![CDATA[
+                    $this->document->addScript('catalog/view/javascript/zitec_dpd/postcode-autocomplete.js');
+                    $this->document->addStyle('catalog/view/theme/default/stylesheet/zitec_dpd/address-autocomplete.css');
+                    $data['language'] = $this->language;
+                    $data['url'] = $this->url;
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/account/register.php">
+        <operation>
+            <search><![CDATA[public function index() {]]></search>
+            <add position="after">
+                <![CDATA[
+                    $this->document->addScript('catalog/view/javascript/zitec_dpd/postcode-autocomplete.js');
+                    $this->document->addStyle('catalog/view/theme/default/stylesheet/zitec_dpd/address-autocomplete.css');
+                    $data['language'] = $this->language;
+                    $data['url'] = $this->url;
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/account/address.php">
+        <operation>
+            <search><![CDATA[protected function getForm() {]]></search>
+            <add position="after">
+                <![CDATA[
+                    $this->document->addScript('catalog/view/javascript/zitec_dpd/postcode-autocomplete.js');
+                    $this->document->addStyle('catalog/view/theme/default/stylesheet/zitec_dpd/address-autocomplete.css');
+                    $data['language'] = $this->language;
+                    $data['url'] = $this->url;
+                ]]>
+            </add>
+        </operation>
+    </file>
+
+    <file path="catalog/view/theme/default/template/checkout/checkout.tpl">
+        <operation>
+            <search><![CDATA[<div class="container">]]></search>
+            <add position="after">
+                <![CDATA[
+                <script type="text/javascript">
+                    var shipmentUrl = '<?php echo $url->link('dpd/shipment/find_postcode'); ?>';
+                    var dpd_search_postcode_empty_result_alert = "<?php echo $language->get('There were no suggestions to the address given county. Please enter post code manually.'); ?>";
+                </script>
+                ]]>
+            </add>
+        </operation>
+
+    </file>
+
+    <file path="catalog/view/theme/default/template/account/register.tpl">
+        <operation>
+            <search><![CDATA[<div class="container">]]></search>
+            <add position="after">
+                <![CDATA[
+                <script type="text/javascript">
+                    var shipmentUrl = '<?php echo $url->link('dpd/shipment/find_postcode'); ?>';
+                    var dpd_search_postcode_empty_result_alert = "<?php echo $language->get('There were no suggestions to the address given county. Please enter post code manually.'); ?>";
+                </script>
+                ]]>
+            </add>
+        </operation>
+
+    </file>
+
+    <file path="catalog/view/theme/default/template/account/address_form.tpl">
+        <operation>
+            <search><![CDATA[<div class="container">]]></search>
+            <add position="after">
+                <![CDATA[
+                <script type="text/javascript">
+                    var shipmentUrl = '<?php echo $url->link('dpd/shipment/find_postcode'); ?>';
+                    var dpd_search_postcode_empty_result_alert = "<?php echo $language->get('There were no suggestions to the address given county. Please enter post code manually.'); ?>";
+                </script>
+                ]]>
+            </add>
+        </operation>
+
+    </file>
+</modification>

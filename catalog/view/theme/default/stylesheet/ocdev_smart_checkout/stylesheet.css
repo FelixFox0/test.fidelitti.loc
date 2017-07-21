@@ -1,0 +1,941 @@
+/*
+ *
+ * @category  : OpenCart
+ * @module    : Smart Checkout
+ * @author    : OCdevWizard <ocdevwizard@gmail.com> 
+ * @copyright : Copyright (c) 2014, OCdevWizard
+ * @license   : http://license.ocdevwizard.com/Licensing_Policy.pdf
+ *
+*/
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url('../smch_fonts/Roboto-Medium.eot');
+  src: url('../smch_fonts/Roboto-Medium.woff') format('woff'), 
+       url('../smch_fonts/Roboto-Medium.ttf') format('truetype'), 
+       url('../smch_fonts/Roboto-Medium.svg') format('svg');
+}
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../smch_fonts/Roboto-Regular.eot');
+  src: url('../smch_fonts/Roboto-Regular.woff') format('woff'), 
+       url('../smch_fonts/Roboto-Regular.ttf') format('truetype'), 
+       url('../smch_fonts/Roboto-Regular.svg') format('svg');
+}
+@font-face {
+  font-family: 'Roboto-Thin';
+  src: url('../smch_fonts/Roboto-Thin.eot');
+  src: url('../smch_fonts/Roboto-Thin.woff') format('woff'), 
+       url('../smch_fonts/Roboto-Thin.ttf') format('truetype'), 
+       url('../smch_fonts/Roboto-Thin.svg') format('svg');
+}
+button.smch_call_button {
+    /* insert there your css style */
+    width: 100% !important;
+    border-bottom: 1px solid #ddd !important;
+}
+#smch_modal_body * {
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    border: 0 none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    box-sizing: content-box;
+}
+#smch_modal_body {
+    width: 400px;
+    height: auto;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #fff;
+    position: absolute;
+    padding: 0px;
+    z-index: 10001; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+#smch_modal_background {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10000; 
+    top: 0;
+    left: 0;
+}
+#smch_modal_body > .top {
+    position: relative;
+    display: block;
+    padding: 12px 0px 12px 20px;
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+    background: #EDEDED;
+}
+#smch_modal_body > .top > div.close_button {
+    background: url(../../image/ocdev_smart_checkout/close_button.png) no-repeat;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: absolute;
+    right: 11px;
+    top: 11px;
+    cursor: pointer;
+}
+#smch_modal_body > .top > div.close_button:hover {
+    opacity: 0.8;
+}
+#smch_modal_body > .top > .heading {
+    font-family: Roboto-Regular, Arial, Tahoma;
+    font-size: 20px;
+    color: #333;
+    font-weight: normal;
+}
+#smch_modal_body > #check_data > .middle {
+    padding: 20px;
+    display: block;
+    position: relative;
+}
+#smch_modal_body > #check_data > .middle > .image_block {
+    display: block;
+    position: relative;
+    min-height: 200px;
+}
+#smch_modal_body > #check_data > .middle > .image_block > .image {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    float: left;
+    border: 1px solid #EDEDED;
+    padding: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+#smch_modal_body > #check_data > .middle > .image_block > .image.no_images {
+    display: block;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    float: none;
+    border: 1px solid #EDEDED;
+    padding: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+#smch_modal_body > #check_data > .middle > .image_block > .images {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    margin: 0 0 0 10px;
+    width: 127px;
+}
+#smch_modal_body > #check_data > .middle > .image_block > .images > img {
+    cursor: pointer;
+    border: 1px solid #EDEDED;
+    padding: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    margin-bottom: 5px;
+}
+#smch_modal_body > #check_data > .middle > .image_block > .images > img + img {
+    margin-left: 7px;
+}
+#smch_modal_body > #check_data > .middle > .image_block > .images > img:nth-child(2n+1) {
+    margin-left: 0px;
+}
+#smch_modal_body > #check_data > .middle > .image_block > .images > img:hover {
+    border: 1px solid #9C9C9C;
+}
+#smch_modal_body > #check_data > .middle > .processing {
+    display: block;
+    position: relative;
+    clear: both;
+    border: 1px solid #EDEDED;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+#smch_modal_body > #check_data > .middle > .processing > .name {
+    display: inline-block;
+    width: 132px;
+    margin-left: 15px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    color: #555;
+    padding: 10px 0;
+}
+#smch_modal_body > #check_data > .middle > .processing > .name > span {
+    font-size: 12px;
+    display: block;
+}
+#smch_modal_body > #check_data > .middle > .processing > .name > span.name_main {
+    font-size: 14px;
+    font-family: Roboto-Medium, Arial, Tahoma;
+    color: #000;
+}
+#smch_modal_body > #check_data > .middle > .processing > .name > span > b {
+    color: #000;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity {
+    border-right: 1px solid #ededed;
+    border-left: 1px solid #EDEDED;
+    display: inline-block;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    width: 70px;
+    min-height: 82px;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div {
+    bottom: 0;
+    height: 61px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > input.input_quantity {
+    border: 1px solid #D9D9D9;
+    background: #fff;
+    width: 40px;
+    display: inline-block;
+    height: 19px;
+    margin: 3px auto;
+    text-align: center;
+    clear: both;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    font-size: 12px;
+    color: #444;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > input.input_quantity:after {
+    content: " ";
+    clear: both;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#decrease_quantity, 
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#increase_quantity {
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 14px;
+    color: #444;
+    display: block;
+    height: 18px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    padding: 0px 0px;
+    width: 40px;
+    margin: 0 auto;
+    -webkit-transition: border-color .20s;
+    -moz-transition: border-color .20s;
+    -o-transition: border-color .20s;
+    transition: border-color .20s;
+    cursor: pointer;
+    background: #F3F3F3;
+    border: 1px solid #D9D9D9;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#decrease_quantity {
+    border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+} 
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#increase_quantity {
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#decrease_quantity:active, 
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#increase_quantity:active {
+    border-color: #4D90FE;
+    color: #000;
+    -moz-box-shadow: 0 0 10px #D4D4D4 inset;
+    -webkit-box-shadow: 0 0 10px #D4D4D4 inset;
+    box-shadow: 0 0 10px #D4D4D4 inset;
+}
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#decrease_quantity:hover, 
+#smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#increase_quantity:hover {
+    background: #F4F4F4;
+    border-color: #C0C0C0;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals {
+    display: inline-block;
+    padding: 10px 0;
+    margin: 0 0 0 10px;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals > #ocdev_price {
+    font-size: 18px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    display: block;
+    text-align: left;
+    color: #333;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals > #ocdev_price.old_price {
+    font-size: 12px !important;
+    color: #999 !important;
+    text-decoration: line-through;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals > #ocdev_special {
+    font-size: 18px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    display: block;
+    text-align: left;
+    color: #333;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals > .tax {
+    display: block;
+    font-size: 12px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    color: #333;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals > .tax > span {
+    display: inline-block;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals > .tax > #ocdev_tax {
+    display: inline-block;
+}
+#smch_modal_body > #check_data > .middle > .processing > .totals > .discount {
+    font-size: 12px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    display: block;
+    text-align: left;
+    color: #333;
+    margin-top: 5px;
+}
+#smch_modal_body > .slide_description {
+    color: #fff;
+    margin-left: -380px !important;
+    padding: 15px;
+    position: absolute;
+    top: 65px;
+    width: 350px;
+    z-index: 4;
+    background: #333;
+}
+#smch_modal_body > .slide_description > .content {
+    overflow: auto;
+    font-size: 12px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    line-height: 18px;
+}
+#smch_modal_body > .slide_description > .open {
+    cursor: pointer;
+    left: 380px;
+    position: absolute;
+    display: block !important;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    font-family: Times New Roman, Arial, Tahoma;
+    font-weight: bold;
+    font-style: italic;
+    top: 0px;
+    z-index: 2;
+    padding: 5px 0;
+    width: 17px;
+    background: #47c843;
+    border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    -webkit-transition: background .50s;
+    -moz-transition: background .50s;
+    -o-transition: background .50s;
+    transition: background .50s;
+}
+#smch_modal_body > .slide_description > .open:hover {
+    background: #3cb736;
+}
+#smch_modal_body > .slide_informer {
+    color: #fff;
+    margin-left: -380px !important;
+    padding: 15px;
+    position: absolute;
+    top: 97px;
+    width: 350px;
+    z-index: 2;
+    background: #333;
+}
+#smch_modal_body > .slide_informer > .content {
+    overflow: auto;
+    font-size: 12px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    line-height: 18px;
+}
+#smch_modal_body > .slide_informer > .open {
+    cursor: pointer;
+    left: 380px;
+    position: absolute;
+    display: block !important;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    font-family: Times New Roman, Arial, Tahoma;
+    font-weight: bold;
+    font-style: italic;
+    top: 0px;
+    z-index: 2;
+    padding: 5px 0;
+    width: 17px;
+    background: #44b5f6;
+    border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    -webkit-transition: background .50s;
+    -moz-transition: background .50s;
+    -o-transition: background .50s;
+    transition: background .50s;
+}
+#smch_modal_body > .slide_informer > .open:hover {
+    background: #2e8abf;
+}
+#smch_modal_body > .slide_attributes {
+    color: #fff;
+    margin-left: -380px !important;
+    padding: 15px;
+    position: absolute;
+    top: 129px;
+    width: 350px;
+    z-index: 1;
+    background: #333;
+}
+#smch_modal_body > .slide_attributes > .content {
+    overflow: auto;
+    font-size: 12px;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    line-height: 18px;
+}
+#smch_modal_body > .slide_attributes > .open {
+    cursor: pointer;
+    left: 380px;
+    position: absolute;
+    display: block !important;
+    color: #fff;
+    font-size: 15px;
+    text-align: center;
+    font-family: Times New Roman, Arial, Tahoma;
+    font-weight: bold;
+    font-style: italic;
+    top: 0px;
+    z-index: 1;
+    padding: 5px 0;
+    width: 17px;
+    background: #EF9104;
+    border-radius: 0 3px 3px 0;
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    -webkit-transition: background .50s;
+    -moz-transition: background .50s;
+    -o-transition: background .50s;
+    transition: background .50s;
+}
+#smch_modal_body > .slide_attributes > .open:hover {
+    background: #2e8abf;
+}
+
+#smch_modal_body > .slide_attributes > .content > .attributes_table {
+    border-collapse: collapse;
+    background: #fff;
+    width: 100%;
+}
+#smch_modal_body > .slide_attributes > .content > .attributes_table thead tr td {
+    border: 1px solid #222;
+    padding: 4px 5px;
+    font-size: 12px;
+    color: #fff;
+    background: #888;
+    font-family: Roboto-Regular, Arial, Tahoma;
+}
+#smch_modal_body > .slide_attributes > .content > .attributes_table tbody tr td {
+    border: 1px solid #222;
+    padding: 2px 5px;
+    font-size: 12px;
+    color: #888;
+    font-family: Roboto-Regular, Arial, Tahoma;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields {
+    position: relative;
+    display: block;
+    margin: 5px 0 0 0;
+    overflow: auto;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields > .left {
+    float: left;
+    width: 49%;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields > .right {
+    float: right;
+    width: 49%;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields > .center {
+    clear: both;
+    display: block;
+    width: 100%;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields input, 
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields select, 
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields textarea {
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 2px 5px;
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    color: #333;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    -webkit-transition: border-color .75s;
+    -moz-transition: border-color .75s;
+    -o-transition: border-color .75s;
+    transition: border-color .75s;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields select {
+    padding: 4px 5px;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields textarea {
+    resize: vertical;
+}
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields input:focus,
+#smch_modal_body > #check_data > .middle > .ocdev_smart_checkout_fields textarea:focus {
+    border: 1px solid #5A5F63;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table, 
+#smch_modal_body > #check_data > .middle > table.option {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 5px 0 0 0;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table > thead, 
+#smch_modal_body > #check_data > .middle > table.option > thead {
+    background: #ededed;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table > thead > tr > td, 
+#smch_modal_body > #check_data > .middle > table.option > thead > tr > td {
+    font-size: 14px;
+    color: #333;
+    font-family: Roboto-Regular, Arial, Tahoma;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table td, 
+#smch_modal_body > #check_data > .middle > table.option td {
+    border: 1px solid #ededed;
+    padding: 3px 5px;
+    font-size: 12px;
+    color: #333;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    vertical-align: middle;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table > tbody > tr > td > div, 
+#smch_modal_body > #check_data > .middle > table.option > tbody > tr > td > div {
+    margin: 2px 0 0 0;
+    display: inline-block;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table > tbody > tr > td.heading, 
+#smch_modal_body > #check_data > .middle > table.option > tbody > tr > td.heading {
+    font-family: Roboto-Medium, Arial, Tahoma;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table > tbody > tr > td:first-child, 
+#smch_modal_body > #check_data > .middle > table.option > tbody > tr > td:first-child {
+    border-right: 1px solid transparent;
+    width: 13px;
+    padding-right: 0;
+    line-height: 18px;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table > tbody > tr > td:nth-child(3) label, 
+#smch_modal_body > #check_data > .middle > table.option > tbody > tr > td:nth-child(3) label {
+    float: right;
+}
+#smch_modal_body > #check_data > .middle > table.smch_methods_table > tbody > tr > td > label, 
+#smch_modal_body > #check_data > .middle > table.option > tbody > tr > td > label {
+    color: #333;
+    float: left;
+    font-family: Roboto-Regular,Arial,Tahoma;
+    font-size: 12px;
+    line-height: 12px;
+}
+#smch_modal_body > #check_data > .middle > .option > input, 
+#smch_modal_body > #check_data > .middle > .option > select, 
+#smch_modal_body > #check_data > .middle > .option > textarea {
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 0 5px 0;
+    padding: 2px 5px;
+    position: relative;
+    width: 100%;
+    font-size: 12px;
+    color: #333;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    -webkit-transition: border-color .75s;
+    -moz-transition: border-color .75s;
+    -o-transition: border-color .75s;
+    transition: border-color .75s;
+}
+#smch_modal_body > #check_data > .middle > .option > select {
+    padding: 4px 5px;
+}
+#smch_modal_body > #check_data > .middle > .option > textarea {
+    resize: vertical;
+}
+#smch_modal_body > #check_data > .middle > .option > input:focus,
+#smch_modal_body > #check_data > .middle > .option > textarea:focus {
+    border: 1px solid #5A5F63;
+}
+#smch_modal_body > #check_data > .middle > .option {
+    margin: 5px 0 0 0;
+}
+#smch_modal_body > #check_data > .middle > #require_information {
+    position: relative;
+    font-weight: normal;
+    font-size: 12px;
+    color: #333;
+    text-align: right;
+    margin: 5px 0 0 0;
+    font-family: Roboto-Regular, Arial, Tahoma;
+}
+#smch_modal_body > #check_data > .middle > #require_information > a {
+    font-weight: normal;
+    font-size: 12px;
+    color: #026dc0;
+    font-family: Roboto-Regular, Arial, Tahoma;
+}
+#smch_modal_body > #check_data > .middle > #require_information > input[type=checkbox] {
+    float: right;
+    margin: 2px 0 2px 5px;
+}
+#smch_modal_body > #check_data > .middle > #require_information > .error_text {
+    margin: 3px 0 0 0;
+}
+#smch_modal_body > #check_data > .middle > #require_captcha {
+    position: relative;
+    text-align: left;
+    margin: 5px 0 0 0;
+}
+#smch_modal_body > #check_data > .middle > #require_captcha > input[type=text] {
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #333;
+    display: inline-block;
+    font-family: Roboto-Regular,Arial,Tahoma;
+    font-size: 12px;
+    margin: 0 0 5px;
+    padding: 5px;
+    position: relative;
+    transition: border-color 0.75s ease 0s;
+    vertical-align: top;
+    width: 240px;
+}
+#smch_modal_body > #check_data > .middle > #require_captcha > input[type=text]:focus {
+    border: 1px solid #5A5F63;
+}
+#smch_modal_body > #check_data > .middle > #require_captcha > img {
+    height: 27px;
+}
+#smch_modal_body > #check_data > .middle > #require_captcha .error_text {
+    float: left;
+}
+#smch_modal_body > #check_data > .smch_modal_loadmask {
+    position: absolute;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background: #eee;
+    opacity: 0.6;
+    left: 0;
+    top: 0;
+}
+#smch_modal_body > #check_data > .smch_modal_loadmask_loading {
+    background:url(../../image/ocdev_smart_checkout/loading.gif) no-repeat center;
+    height: 19px;
+    position: absolute;
+    width: 220px;
+    z-index: 10001;
+    top: 0;
+    left: 0;
+}
+#smch_modal_body > #check_data .error_text {
+    font-size: 11px;
+    color: #DF2E2E;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    display: block;
+    margin: -4px 0 2px;
+}
+#smch_modal_body > #check_data .error_text_table, 
+#smch_modal_body > #check_data .error_text_table_option {
+    font-size: 11px;
+    color: #DF2E2E;
+    font-family: Roboto-Regular, Arial, Tahoma;
+    display: block;
+    margin: 4px 0 2px;
+}
+#smch_modal_body > #check_data .error_style {
+    border: 1px solid #DF2E2E !important;
+}
+#smch_modal_body > #check_data .error_style_table > thead > tr > td, 
+#smch_modal_body > #check_data .error_style_table_option > thead > tr > td {
+    background: #DF2E2E;
+    color: #fff !important;
+    border: 1px solid #DF2E2E !important;
+}
+#smch_modal_body > #check_data .error_style_table_option > input, 
+#smch_modal_body > #check_data .error_style_table_option > select,
+#smch_modal_body > #check_data .error_style_table_option > textarea {
+    border: 1px solid #DF2E2E !important;
+}
+#smch_modal_body > #check_data > .bottom {
+    position: relative;
+    display: block;
+    padding: 20px;
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    background: #EDEDED;
+    height: 35px;
+}
+#smch_modal_body > #check_data > .bottom > input, 
+#smch_modal_body > #check_data > .bottom > input.close_button_bottom {
+    display: inline-block;
+    height: 35px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0px;
+    width: 210px;
+    outline: none;
+    border: 0;
+    font-size: 14px;
+    font-family: Roboto-Medium, Arial, Tahoma;
+    text-decoration: none;
+    color: #FFF;
+    background: #47c843;
+    text-align: center;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    float: right;
+    -webkit-transition: background .50s;
+    -moz-transition: background .50s;
+    -o-transition: background .50s;
+    transition: background .50s;
+    cursor: pointer;
+}
+#smch_modal_body > #check_data > .bottom > input:hover {
+    background: #3cb736;
+}
+#smch_modal_body > #check_data > .bottom > input:active {
+    background: #33933A;
+}
+#smch_modal_body > #check_data > .bottom > input.close_button_bottom {
+    background: #E94E4E;
+}
+#smch_modal_body > #check_data > .bottom > input.close_button_bottom:hover {
+    background: #E81717;
+}
+#smch_modal_body > #check_data > .bottom > input.close_button_bottom:active {
+    background: #AA3A3A;
+}
+#smch_modal_body > #check_data > .bottom > .totals {
+    border: 2px solid #bbb;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    float: left;
+    font-size: 14px;
+    padding: 6px 10px 5px;
+    position: relative;
+    text-align: center;
+    font-family: Roboto-Medium, Arial, Tahoma;
+    color: #333;
+}
+#smch_modal_body > #check_data > .bottom > .totals > span {
+    display: inline-block;
+}
+#smch_modal_body > #check_data > .bottom > .totals > #total_order {
+    display: inline-block;
+}
+#payment_html {
+    display: none;
+}
+@media (min-width: 320px) and (max-width: 359px) {
+    #smch_modal_body {
+        width: 295px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .image {
+        display: block;
+        text-align: center;
+        float: none;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images {
+        margin: 8px 0 0 0;
+        width: 100%;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity {
+        width: 40px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .name {
+        width: 90px;
+        margin-left: 5px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals {
+        margin: 0 0 0 5px;
+    }
+    #smch_modal_body > #check_data > .bottom > input, #smch_modal_body > #check_data > .bottom > input.close_button_bottom {
+        width: 110px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images > img + img {
+        margin-left: 2px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images > img:nth-child(2n+1) {
+        margin-left: 2px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images > img:nth-child(5n+1) {
+        margin-left: 0px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .name > span.name_main {
+        font-size: 12px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > #ocdev_special {
+        font-size: 15px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > #ocdev_price.old_price {
+        font-size: 11px !important;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > .tax {
+        font-size: 11px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > .discount {
+        font-size: 11px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity > div {
+        width: 30px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#decrease_quantity, #smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#increase_quantity {
+        width: 30px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity > div > input.input_quantity {
+        width: 28px;
+    }
+    #smch_modal_body > .slide_description {
+        margin-left: -275px !important;
+        width: 245px;
+    }
+    #smch_modal_body > .slide_description > .open {
+        left: 275px;
+    }
+    #smch_modal_body > .slide_informer {
+        margin-left: -275px !important;
+        width: 245px;
+    }
+    #smch_modal_body > .slide_informer > .open {
+        left: 275px;
+    }
+    #smch_modal_body > .slide_attributes {
+        margin-left: -275px !important;
+        width: 245px;
+    }
+    #smch_modal_body > .slide_attributes > .open {
+        left: 275px;
+    }
+}
+@media (min-width: 360px) and (max-width: 414px) {
+    #smch_modal_body {
+        width: 330px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .image {
+        display: block;
+        text-align: center;
+        float: none;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images {
+        margin: 8px 0 0 0;
+        width: 100%;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity {
+        width: 40px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity > div {
+        width: 30px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#decrease_quantity, #smch_modal_body > #check_data > .middle > .processing > .quantity > div > button#increase_quantity {
+        width: 30px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .quantity > div > input.input_quantity {
+        width: 28px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .name {
+        margin-left: 10px;
+        width: 115px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .name > span.name_main {
+        font-size: 12px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals {
+        margin: 0 0 0 5px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > #ocdev_special {
+        font-size: 15px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > #ocdev_price.old_price {
+        font-size: 11px !important;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > .tax {
+        font-size: 11px;
+    }
+    #smch_modal_body > #check_data > .middle > .processing > .totals > .discount {
+        font-size: 11px;
+    }
+    #smch_modal_body > #check_data > .bottom > input, #smch_modal_body > #check_data > .bottom > input.close_button_bottom {
+        width: 150px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images > img + img {
+        margin-left: 2px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images > img:nth-child(2n+1) {
+        margin-left: 2px;
+    }
+    #smch_modal_body > #check_data > .middle > .image_block > .images > img:nth-child(5n+1) {
+        margin-left: 0px;
+    }
+    #smch_modal_body > .slide_description {
+        margin-left: -275px !important;
+        width: 245px;
+    }
+    #smch_modal_body > .slide_description > .open {
+        left: 275px;
+    }
+    #smch_modal_body > .slide_informer {
+        margin-left: -275px !important;
+        width: 245px;
+    }
+    #smch_modal_body > .slide_informer > .open {
+        left: 275px;
+    }
+    #smch_modal_body > .slide_attributes {
+        margin-left: -275px !important;
+        width: 245px;
+    }
+    #smch_modal_body > .slide_attributes > .open {
+        left: 275px;
+    }
+}

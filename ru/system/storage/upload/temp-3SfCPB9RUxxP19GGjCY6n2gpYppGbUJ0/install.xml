@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>  
+   <id>Brainy Filter</id>
+   <name>Brainy Filter</name>
+   <code>brainyfilter</code>
+   <version>Ultimate 5.1.1 OC2.3</version>
+   <author>Giant Leap Lab</author>
+   
+   <file path="catalog/controller/product/*.php">
+       <operation>
+           <search><![CDATA[$this->model_catalog_product->getProducts($filter_data)]]></search>
+           <add position="before"><![CDATA[            $filter_data['filter_bfilter'] = true;]]></add>
+       </operation>
+       <operation>
+           <search><![CDATA[= $this->model_catalog_product->getTotalProducts($filter_data)]]></search>
+           <add position="before"><![CDATA[            $filter_data['filter_bfilter'] = true;]]></add>
+       </operation>
+   </file>
+   
+   <file path="catalog/controller/product/category.php">
+	  <operation>
+			<search><![CDATA[$category_info = $this->model_catalog_category->getCategory($category_id);]]></search>
+            <add position="after"><![CDATA[
+                /* Brainy Filter (brainyfilter.xml) - Start ->*/
+                if (!$category_info) {
+                    $this->load->language('extension/module/brainyfilter');
+                    $category_info = array(
+                        'name' => $this->language->get('text_bf_page_title'),
+                        'description' => '',
+                        'meta_description' => '',
+                        'meta_keyword' => '',
+                        'meta_title' => $this->language->get('text_bf_page_title'),
+                        'image' => '',
+                    );
+                    $this->request->get['path'] = 0;
+                    $showCategories = false;
+                    $route = 'extension/module/brainyfilter/filter';
+                    $path  = '';
+                } else {
+                    $route = 'product/category';
+                    $path  = 'path=' . $this->request->get['path'];
+                    $showCategories = true;
+                }
+                /* Brainy Filter (brainyfilter.xml) - End ->*/
+                ]]>
+			</add>
+	  </operation>
+	  <operation>
+			<search><![CDATA[$results = $this->model_catalog_category->getCategories($category_id);]]></search>
+            <add position="replace"><![CDATA[
+                /* Brainy Filter (brainyfilter.xml) - Start ->*/
+                if ($showCategories) {
+                $results = $this->model_catalog_category->getCategories($category_id);
+                } else {
+                    $results = array();
+                }
+                /* Brainy Filter (brainyfilter.xml) - End ->*/
+            ]]>
+			</add>
+	  </operation>
+	  <operation>
+			<search regex="true"><![CDATA[/\'product\/category\', \'path\=\' \. \$this\-\>request\-\>get\[\'path\'\]/]]></search>
+            <add position="replace"><![CDATA[$route, $path]]>
+			</add>
+	  </operation>
+        <operation>
+            <search><![CDATA[if ($page == 1) {]]></search>
+            <add position="before">
+                <![CDATA[
+                /* Brainy Filter (brainyfilter.xml) - Start ->*/
+                if (isset($category_info['category_id'])) {
+                /* Brainy Filter (brainyfilter.xml) - End ->*/]]>
+            </add>
+        </operation>
+        <operation>
+            <search><![CDATA[if ($limit && ceil($product_total / $limit) > $page) {]]></search>
+            <add position="after" offset="2">
+                <![CDATA[
+                /* Brainy Filter (brainyfilter.xml) - Start ->*/
+                }
+                /* Brainy Filter (brainyfilter.xml) - End ->*/]]>
+            </add>
+        </operation>
+   </file>
+   
+   <file path="catalog/controller/product/special.php">
+        <operation>
+            <search><![CDATA[$product_total = $this->model_catalog_product->getTotalProductSpecials();]]></search>
+            <add position="replace"><![CDATA[
+                $filter_data['filter_bfilter'] = true;
+                $filter_data['filter_specials_only'] = true;
+                $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+            ]]></add>
+        </operation>
+        <operation>
+            <search><![CDATA[$results = $this->model_catalog_product->getProductSpecials($filter_data);]]></search>
+            <add position="replace"><![CDATA[
+                $results = $this->model_catalog_product->getProducts($filter_data);
+            ]]></add>
+        </operation>
+   </file>
+   
+   <file path="catalog/controller/product/search.php">
+       <operation>
+           <search><![CDATA[if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {]]></search>
+           <add position="replace"><![CDATA[
+                    /* Brainy Filter (brainyfilter.xml) - Start ->*/
+                    /* Show product list in any case */
+					if (true) {
+                    /* Brainy Filter (brainyfilter.xml) - End ->*/
+                ]]>
+           </add>
+       </operation>
+   </file>
+   
+    <file path="catalog/model/catalog/product.php">
+        <operation>
+            <search><![CDATA[public function getProducts($data = array()) {]]></search>
+            <add>
+                <![CDATA[
+    /**
+     * Custom getProducts() method added by Brainy Filter extension
+     */
+    public function getProducts($data = array()) 
+    {
+        if (!isset($data['filter_bfilter'])) {
+            return $this->getProductsOriginal($data);
+        }
+        $settings = $this->config->get('brainyfilter_layout_basic');
+        if (isset($settings['global']['subcategories_fix']) && $settings['global']['subcategories_fix']) {
+            $data['filter_sub_category'] = true;
+        }
+        $this->load->model('extension/module/brainyfilter');
+        $model = new ModelExtensionModuleBrainyFilter($this->registry);
+        $model->setData($data);
+        $sql = $model->prepareQueryForCategory();
+        $query = $this->db->query($sql);
+
+        $product_data = array();
+		foreach ($query->rows as $result) {
+			$product_data[$result['product_id']] = $this->getProduct($result['product_id']);
+		}
+
+		return $product_data;
+    }
+    
+    /** 
+     * It is the original getProducts() method, which was renamed by Brainy Filter modification.
+     * A custom getProduct() method was added instead. 
+     * Disable the Brainy Filter OCMOD modification in order to reset the method.
+     * Note: disabling of Brainy Filter modification will break the work of Brainy Filter extension.
+     */
+     public function getProductsOriginal($data = array()) { ]]>
+            </add>
+        </operation>
+        
+        <operation>
+            <search><![CDATA[public function getTotalProducts($data = array()) {]]></search>
+            <add>
+                <![CDATA[
+    /**
+     * Custom getTotalProducts() method added by Brainy Filter extension
+     */
+    public function getTotalProducts($data = array())
+    {
+        if (!isset($data['filter_bfilter'])) {
+            return $this->getTotalProductsOriginal($data);
+        }
+        $settings = $this->config->get('brainyfilter_layout_basic');
+        if (isset($settings['global']['subcategories_fix']) && $settings['global']['subcategories_fix']) {
+            $data['filter_sub_category'] = true;
+        }
+        $this->load->model('extension/module/brainyfilter');
+        $model = new ModelExtensionModuleBrainyFilter($this->registry);
+        $model->setData($data);
+        $sql = $model->prepareQueryForTotal();
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+    }
+    
+    /** 
+     * It is the original getTotalProducts() method, which was renamed by Brainy Filter modification.
+     * A custom getTotalProducts() method was added instead. 
+     * Disable the Brainy Filter OCMOD modification in order to reset the method.
+     * Note: disabling of Brainy Filter modification will break the work of Brainy Filter extension.
+     */
+     public function getTotalProductsOriginal($data = array()) { ]]>
+            </add>
+        </operation>
+    </file>
+    <file path="catalog/model/checkout/order.php">
+        <operation>
+            <search><![CDATA[$this->cache->delete('product');]]></search>
+            <add position="before"><![CDATA[
+                require_once 'admin/model/module/brainyfilter.php';
+                $bfModel = new ModelExtensionModuleBrainyFilter($this->registry);
+                $prodIds = array();
+                foreach($order_product_query->rows as $prod) {
+                    $prodIds[] = $prod['product_id'];
+                }
+                $bfModel->updateStockCache($prodIds);
+            ]]></add>
+        </operation>
+    </file>
+</modification>

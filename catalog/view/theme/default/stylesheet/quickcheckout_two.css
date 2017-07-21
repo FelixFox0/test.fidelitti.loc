@@ -1,0 +1,12 @@
+.quickcheckoutleft {
+	width: 66%;
+	float:left;
+}
+.quickcheckoutright {
+	width: 32%;
+	margin-left: 10px;
+	float: left;
+}
+.quickcheckoutmid {
+	width: 100%;
+}

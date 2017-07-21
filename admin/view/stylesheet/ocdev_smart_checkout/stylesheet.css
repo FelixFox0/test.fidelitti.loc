@@ -1,0 +1,226 @@
+/** 
+ *
+ * @category  : OpenCart
+ * @module    : Smart Checkout
+ * @author    : OCdevWizard <ocdevwizard@gmail.com> 
+ * @copyright : Copyright (c) 2014, OCdevWizard
+ * @license   : http://license.ocdevwizard.com/Licensing_Policy.pdf
+ *
+ */
+ 
+.main_ocdev_module {
+  position: relative;
+  z-index: 0;
+  padding: 20px;
+  font-family: Tahoma, Arial;
+}
+.main_ocdev_module .scrollbox {
+  resize: vertical;
+  height: 112px;
+}
+.main_ocdev_module .scrollbox label {
+  font-weight: normal;
+  margin: 0;
+}
+.main_ocdev_module .btn-group, .main_ocdev_module .btn-group-vertical {
+  outline: none;
+}
+.main_ocdev_module .panel-title {
+  line-height: 24px;
+}
+.main_ocdev_module .faq {
+  color: #0F71C8 !important;
+}
+.main_ocdev_module table.form > tbody > tr > td {
+  padding: 10px 0;
+}
+.main_ocdev_module table.main > tbody > tr > td:first-child {
+  padding-right: 15px;
+}
+.main_ocdev_module .tabs-left {
+  padding-top: 20px;
+}
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs > li{
+  float: none;
+}
+.main_ocdev_module .nav-tabs > li > a {
+  color: #337ab7;
+  font-weight: normal;
+  font-family: Tahoma, Arial;
+}
+.main_ocdev_module .nav-tabs > li.active a {
+  color: #555;
+  font-weight: normal;
+}
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs > li > a {
+  min-width: 74px;
+  margin-right: 0;
+  margin-bottom: 3px;
+}
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs {
+  border-right: 1px solid #ddd;
+}
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs > li > a {
+  margin-right: -1px;
+  -webkit-border-radius: 4px 0 0 4px;
+     -moz-border-radius: 4px 0 0 4px;
+          border-radius: 4px 0 0 4px;
+}
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs > li > a:hover,
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs > li > a:focus {
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs {
+  border-bottom: 0;
+}
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs .active > a,
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs .active > a:hover,
+.main_ocdev_module .tabs-left > .col-sm-3 > .nav-tabs .active > a:focus {
+  border-color: #ddd transparent #ddd #ddd;
+  *border-right-color: #ffffff;
+}
+.main_ocdev_module .col-sm-3 ul#module li > a > i {
+  float: right;
+  top: 8px;
+}
+.main_ocdev_module .col-sm-3 ul#module li.no_field_title > a > i {
+  top: 3px;
+}
+.main_ocdev_module .col-sm-3 ul#module li.active > a > i {
+ color: #d43f3a;
+ cursor: pointer;
+}
+.main_ocdev_module .col-sm-3 ul#module li > a > span.field_title {
+  font-size: 10px;
+  line-height: 11px;
+  color: #555;
+  display: block;
+}
+.main_ocdev_module .col-sm-3 ul#module li > a > i:hover {
+ color: #d43f3a;
+}
+.main_ocdev_module .col-sm-3 ul#module li.active > a > i:hover {
+ color: #555555;
+}
+.main_ocdev_module #module-add:hover a {
+  background: none;
+  border: 1px solid transparent;
+}
+.main_ocdev_module #module-add li a i:hover {
+  color: #fff !important;
+}
+.main_ocdev_module .language-block, .main_ocdev_module .fields_block {
+  display: none;
+}
+.main_ocdev_module .language-block.active, .main_ocdev_module .fields_block.active {
+  display: block;
+}
+.main_ocdev_module .fix_input {
+  margin-top: 7px;
+}
+.main_ocdev_module .form.main kbd {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.main_ocdev_module .text_help {
+  font-size: 12px;
+  color: #777;
+}
+.main_ocdev_module .nav-tabs > li.active > a, .main_ocdev_module .nav-tabs > li.active > a:hover, .main_ocdev_module .nav-tabs > li.active > a:focus, .main_ocdev_module .nav-tabs > li.active > a:active {
+  outline: none;
+}
+.main_ocdev_module .nav-tabs > li > a, .main_ocdev_module .nav-tabs > li > a:hover, .main_ocdev_module .nav-tabs > li > a:focus, .main_ocdev_module .nav-tabs > li > a:active {
+  outline: none;
+}
+.main_ocdev_module .panel-heading a {
+  font-size: 12px;
+  font-family: Tahoma, Arial;
+}
+.main_ocdev_module .panel-heading a.btn-warning {
+  color: #fff;
+}
+.main_ocdev_module .panel-heading a.btn-warning i {
+  top: 1px;
+}
+.main_ocdev_module .panel-heading a i {
+  top: 0px;
+}
+.main_ocdev_module input + .background_for_label {
+  width: 55px;
+  height: 55px;
+  border: 1px solid #000;
+  margin: 0 2px 0 0;
+  opacity: 0.7;
+}
+.main_ocdev_module .td_background_images input {
+  display: none;
+}
+.main_ocdev_module input:checked + .background_for_label  {
+  border: 1px solid #F00;
+  opacity: 1;
+}
+.main_ocdev_module input.transfer_payments_selector {
+  float: right;
+  width: 80px;
+  height: 18px;
+  resize: none;
+}
+.main_ocdev_module .scrollbox {
+  border: 1px solid #CCCCCC;
+  width: 350px;
+  height: 100px;
+  background: #FFFFFF;
+  overflow-y: scroll;
+}
+.main_ocdev_module .scrollbox img {
+  float: right;
+  cursor: pointer;
+}
+.main_ocdev_module .scrollbox div {
+  padding: 3px;
+}
+.main_ocdev_module .scrollbox div input {
+  margin: 0px;
+  padding: 0px;
+  margin-right: 3px;
+  outline: none;
+}
+.main_ocdev_module .scrollbox div.even {
+  background: #FFFFFF;
+}
+.main_ocdev_module .scrollbox div.odd {
+  background: #E4EEF7;
+}
+.main_ocdev_module table.form {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.main_ocdev_module table.form > tbody > tr > td:first-child {
+  width: 200px;
+}
+.main_ocdev_module table.form > tbody > tr > td {
+  color: #000000;
+  border-bottom: 1px dotted #CCCCCC;
+}
+.main_ocdev_module .panel-heading i {
+  font-size: 11px;
+  font-weight: 500;
+}
+/* fix for bootstrap */
+.dropdown-menu > li > a {
+  clear: both;
+  color: #333;
+  font-weight: normal;
+  line-height: 1.42857;
+  padding: 3px 20px;
+  white-space: normal;
+}
+.dropdown-menu > li > a {
+  white-space: normal;
+}
+.dropdown-menu {
+  font-size: 12px;
+  list-style: outside none none;
+  text-align: left;
+}

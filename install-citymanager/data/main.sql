@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS `prmn_cm_city` (`id` INT(11) NOT NULL AUTO_INCREMENT, `fias_id` INT(11) NOT NULL, `name` VARCHAR(255) NOT NULL, `sort` SMALLINT(6) DEFAULT NULL, PRIMARY KEY (`id`), UNIQUE KEY `fias_id` (`fias_id`)) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+CREATE TABLE IF NOT EXISTS `prmn_cm_redirect` (`id` INT(11) NOT NULL AUTO_INCREMENT, `fias_id` INT(11) NOT NULL, `url` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`), KEY `fias_id` (`fias_id`)) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+CREATE TABLE IF NOT EXISTS `prmn_cm_message` (`id` INT(11) NOT NULL AUTO_INCREMENT, `fias_id` INT(11) NOT NULL, `key` VARCHAR(255) NOT NULL, `value` TEXT NOT NULL, PRIMARY KEY (`id`), KEY `fias_id` (`fias_id`)) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+CREATE TABLE IF NOT EXISTS `prmn_cm_currency` (`id` INT(11) NOT NULL AUTO_INCREMENT, `country_id` INT(11) NOT NULL, `code` VARCHAR(3) NOT NULL, PRIMARY KEY (`id`)) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+CREATE TABLE IF NOT EXISTS `prmn_cm_customer_group` (`fias_id` INT(11) NOT NULL, `customer_group_id` INT(11) NOT NULL, PRIMARY KEY (`fias_id`)) ENGINE = MyISAM DEFAULT CHARSET = utf8;
+DROP TABLE IF EXISTS `country_to_fias`;
+CREATE TABLE IF NOT EXISTS `country_to_fias` (`country_id` INT(11) NOT NULL, `fias_id` INT(11) NOT NULL, UNIQUE KEY `country_id` (`country_id`, `fias_id`)) ENGINE=InnoDB DEFAULT CHARSET = utf8;
+INSERT INTO `country_to_fias` (`country_id`, `fias_id`) VALUES (20, 300000), (176, 1), (220, 400000), (109, 500000);
+DROP TABLE IF EXISTS `fias`;
+DROP TABLE IF EXISTS `zone_to_fias`;
+CREATE TABLE IF NOT EXISTS `fias` (`fias_id` INT(11) NOT NULL AUTO_INCREMENT, `parent_id` INT(11) NOT NULL, `postalcode` VARCHAR(6) DEFAULT NULL, `offname` VARCHAR(120) DEFAULT NULL, `shortname` VARCHAR(10) DEFAULT NULL, `level` TINYINT(1) NOT NULL, PRIMARY KEY (`fias_id`), KEY `postalcode` (`postalcode`), KEY `offname` (`offname`), KEY `level` (`level`), KEY `parent_id` (`parent_id`), KEY `osl` (`offname`, `shortname`, `level`)) ENGINE = MYISAM DEFAULT CHARSET = utf8;
+CREATE TABLE IF NOT EXISTS `zone_to_fias` (`zone_id` INT(11) NOT NULL, `fias_id` INT(11) NOT NULL, UNIQUE KEY `zone_id` (`zone_id`), UNIQUE KEY `fias_id` (`fias_id`)) ENGINE = MyISAM DEFAULT CHARSET = utf8;

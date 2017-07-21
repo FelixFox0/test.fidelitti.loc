@@ -1,0 +1,246 @@
+/**
+ * Brainy Filter SEO Plugin 1.0.2 OC2.3, September 22, 2016 / brainyfilter.com 
+ * Copyright 2015-2016 Giant Leap Lab / www.giantleaplab.com 
+ * License: Commercial. Reselling of this software or its derivatives is not allowed. You may use this software for one website ONLY including all its subdomains if the top level domain belongs to you and all subdomains are parts of the same OpenCart store. 
+ * Support: http://support.giantleaplab.com
+ */
+ #bf-adm-main-menu {
+     line-height: 1.4;
+ }
+#bf-adm-main-menu > ul > li:last-child {
+    width: 230px;
+}
+#bf-adm-main-menu .icon.seo {
+    background: url("../image/brainyfilter/seo-menu-icon.png") no-repeat;
+    background-position: 0 0;
+    width: 30px;
+}
+#bf-adm-main-menu li.selected .icon.seo, #bf-adm-main-menu li:hover .icon.seo {
+    background-position: 0 -33px;
+}
+
+.bf-separators {
+    font-size: 24px;
+    color: #888;
+}
+#bf-adm-main-menu li {
+    padding: 0;
+}
+#bf-adm-main-menu li a {
+    padding: 10px 10px 10px;
+    display: block;
+    position: relative;
+    color: #3C3C3C;
+    overflow: auto;
+}
+#bf-adm-main-menu li a:hover, #bf-adm-main-menu li.selected a {
+    color: #fff;
+}
+.bf-separators span, #bf-adm-main-container .bf-separators input[type=text] {
+    height: 40px;
+}
+.bf-browser {
+    padding: 6px;
+    border-top: 1px solid #f3f2f3;
+    border-bottom: 1px solid #989698;
+    background: linear-gradient(to top, #d5d3d5, #e4e2e4);
+}
+.bf-browser-addr-line {
+    min-height: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #b3b1b3;
+    border-top: 1px solid #d0ced0;
+    line-height: 23px;
+    color: #000;
+    padding-left: 25px;
+    font-size: 12px;
+}
+.bf-seo-two-col-inputs {
+    display: inline-block;
+}
+.bf-seo-two-col-inputs:first-of-type {
+    margin-right: 15px;
+}
+.bf-seo-two-col-inputs > div {
+    line-height: 25px;
+    font-size: 13px;
+    color: #666;
+}
+#bf-replacement-rules tbody tr + tr:last-child,
+#bf-replacements tbody tr + tr:last-child {
+    display: none;
+}
+#bf-replacement-rules tbody tr:first-child:last-child td,
+#bf-replacements tbody tr:first-child:last-child td {
+    padding: 40px 0;
+    text-align: center;
+    color: #80848C;
+}
+#bf-replacement-rules tfoot td,
+#bf-replacements tfoot td {
+    vertical-align: top;
+    padding-top: 10px;
+}
+#bf-replacement-rules tfoot textarea {
+    width: 300px;
+    border: 1px solid #4F5357;
+    background-color: #fff;
+}
+#bf-replacement-rules tfoot input {
+    width: 100%;
+}
+#bf-add-seo-rule {
+    white-space: nowrap;
+}
+#bf-replacement-rules thead th:nth-child(4) {
+    width: 120px;
+}
+#bf-adm-main-container .bf-underlined-input input[type=text] {
+    width: 60px;
+    border: 0;
+    text-align: center;
+    outline: none;
+    color: #000;
+}
+#bf-replacements .bf-adm-label-td, #bf-replacement-rules .bf-adm-label-td {
+    width: auto;
+}
+#bf-replacements .bf-adm-label-td + .bf-adm-label-td, #bf-replacement-rules .bf-adm-label-td + .bf-adm-label-td {
+    padding-left: 3px;
+}
+.bf-adm-table thead th {
+    vertical-align: bottom;
+}
+#bf-replacements .bf-adm-table, #bf-replacement-rules .bf-adm-table {
+    margin-top: 30px;
+}
+#bf-replacements .bf-adm-table th {
+  text-align: left;
+}
+.bf-sml {
+    font-size: 12px;
+    line-height: 14px;
+    
+}
+.bf-alert.bf-sml {
+    color: #A07D7D;
+}
+.bf-alert.bf-sml a {
+    color: #1e91cf;
+    
+}
+.bf-th-header-static {
+    background: #E1E5E9;
+    color: #3C3C3C;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 32px;
+    height: 32px;
+    padding: 0 10px;
+    border-bottom: 10px solid #fff;
+    border-top: 10px solid #fff;
+    border: 0;
+    border-bottom: 1px solid #fff;
+}
+.bf-info {
+    background: url("../image/brainyfilter/info.png") no-repeat 0 0;
+    min-height: 25px;
+    margin-right: 10px;
+    padding-left: 35px;
+    line-height: 15px;
+    color: #80848C;
+    width: auto;
+    height: auto;
+}
+.bf-adm-table td.bf-adm-label-td {
+    width: 300px;
+    padding: 3px 0;
+}
+.bf-switcher .bf-yes, .bf-switcher .bf-no, .bf-switcher .bf-def {
+    display: block;
+    float: left;
+    background: #E1E5E9;
+    color: #A0A2A5;
+    font-size: 12px;
+    line-height: 22px;
+    height: 22px;
+    text-align: center;
+    padding-bottom: 0 !important;
+    font-weight: normal;
+    cursor: pointer;
+}
+.bf-switcher .bf-no {
+    border-radius: 12px 0 0 12px;
+    padding: 0 5px 0 8px;
+    margin-right: 1px;
+}
+.bf-switcher .bf-def {
+    border-radius: 12px 0 0 12px;
+    padding: 0 5px 0 7px;
+    margin-right: 1px;
+}
+.bf-switcher .bf-yes {
+    border-radius: 0 12px 12px 0;
+    padding: 0 7px 0 5px;
+}
+.bf-def + .bf-no {
+    border-radius: 0;
+}
+.bf-switcher .bf-no.bf-active, .bf-switcher .bf-yes.bf-active, .bf-switcher .bf-def.bf-active {
+    color: #fff;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3) inset;
+}
+.bf-switcher .bf-no.bf-active {
+    background: #CB3C3C;
+}
+.bf-switcher .bf-yes.bf-active {
+    background: #4AB33C;
+}
+.bf-switcher input[disabled] + .bf-no + .bf-yes.bf-active,
+.bf-switcher input[disabled] + .bf-def + .bf-no + .bf-yes.bf-active,
+.bf-switcher .bf-yes.bf-active.disabled {
+    background: #9AC595;
+}
+.bf-switcher input[disabled] + .bf-no.bf-active,
+.bf-switcher input[disabled] + .bf-def + .bf-no.bf-active,
+.bf-switcher .bf-no.bf-active.disabled {
+    background: #D58787;
+}
+.bf-switcher input[disabled] + .bf-def.bf-active,
+.bf-switcher .bf-def.bf-active.disabled {
+    background: #ADD0F4;
+}
+.autocomplete-suggestions { 
+    /*border: 1px solid #999;*/ 
+    background: #FFF; 
+    cursor: default; 
+    overflow: auto; 
+    box-shadow: 0 10px 10px rgba(0,0,0,0.3);
+}
+.autocomplete-suggestion { 
+    padding: 2px 5px; 
+    white-space: nowrap; 
+    overflow: hidden; 
+}
+.autocomplete-no-suggestion { 
+    padding: 2px 5px;
+}
+.autocomplete-selected { 
+    background: #F0F0F0; 
+}
+.autocomplete-suggestions strong { 
+    font-weight: bold; 
+    color: #000; 
+}
+.autocomplete-group { 
+    padding: 2px 5px; 
+}
+.autocomplete-group strong { 
+    font-weight: bold; 
+    font-size: 16px; 
+    color: #000; 
+    display: block; 
+    border-bottom: 1px solid #000; 
+}

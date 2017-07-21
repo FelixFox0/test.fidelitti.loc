@@ -1,0 +1,17 @@
+#android-store-promote-alert {
+	background: #007EB5;
+	width: 100%;
+	padding: 15px;
+	text-align: center;
+}
+
+#android-store-promote-alert a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#android-store-promote-alert button.close {
+	color: #FFF;
+	opacity: 1;
+	text-shadow: none;
+}

@@ -1,0 +1,16 @@
+/* splash mask */
+.splash-mask {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: #f2f2f2;
+	width: 100%;
+    height: 100%;
+	z-index: 10000;
+}
+
+.splash-mask .splash-logo {
+	margin: 0 auto;
+}

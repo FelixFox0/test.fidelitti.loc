@@ -1,0 +1,129 @@
+<modification>
+	<id><![CDATA[Product Series - template - default]]></id>
+	<version><![CDATA[1.6]]></version>
+	<vqmver><![CDATA[2.1.6]]></vqmver>
+	<author><![CDATA[WeDoWeb.com.au | contact@wedoweb.com.au]]></author>
+	<file name="catalog/view/theme/*/template/common/header.tpl">
+		<operation error="log">
+			<search position="bottom"><![CDATA[]]></search>
+			<add><![CDATA[<!--BOF Product Series-->
+			<style>	
+				.pds a, .pds a:hover, .pds a:visited
+				{
+					text-decoration: none;
+				}
+			
+				.pds a.preview
+				{
+					display: inline-block;
+				}
+				
+				.pds a.preview.pds-current, .pds a.pds-current
+				{
+					border-bottom: 3px solid orange;
+				}
+				
+				#preview{
+					position: absolute;
+					border: 1px solid #DBDEE1;
+					background: #F8F8F8;
+					padding: 5px;
+					display: none;
+					color: #333;
+					z-index: 1000000;
+				}
+			</style>
+			<script type="text/javascript" src="catalog/view/javascript/imagepreview/imagepreview.js"></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+					pdsListRollover();
+				});
+				
+				function pdsListRollover()
+				{
+					$('.pds a.pds-thumb-rollover').hover(function(){
+						//on hover
+						$this = $(this);
+						var hoverImage = $this.attr('rel');
+						$this.parents('.product-thumb').find('.image a img').attr('src', hoverImage);
+					}, function(){
+						//on unhover
+						$this = $(this);
+						var masterImage = $this.attr('master-image');
+						$this.parents('.product-thumb').find('.image a img').attr('src', masterImage);
+					});
+				}
+			</script>
+			<!--EOF Product Series-->]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/product/category.tpl">
+		<operation error="log">
+			<search position="after"><![CDATA[<a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>]]></search>
+			<add><![CDATA[<!--BOF Product Series-->
+			<?php if(sizeof($product['pds']) > 0) { ?>
+				<div class="pds">
+					<?php foreach ($product['pds'] as $pds) { ?>
+						<a title="<?php echo $pds['product_name']; ?>" href="<?php echo $pds['product_link']; ?>"
+							master-image="<?php echo $pds['product_master_image']; ?>"
+							rel="<?php echo $pds['product_pds_image_hover']; ?>"
+							class="<?php echo $pds['pds_list_thumbnail_class']; ?>"
+						>
+							<img src="<?php echo $pds['product_pds_image']; ?>" alt="<?php echo $pds['product_name']; ?>" />
+						</a>
+					<?php } ?>
+				</div>
+			<?php } ?>
+			<!--EOF Product Series-->]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" error="skip"><![CDATA[$(element).find('.name').html() + '</div>';]]></search>
+			<add><![CDATA[
+			//BOF Product Series 
+			if($(element).find('.pds').length > 0)
+				html += '<div class="pds">' + $(element).find('.pds').html() + '</div>';
+			//EOF Product Series]]></add>
+		</operation>
+		<operation error="skip">
+			<search position="after" error="skip"><![CDATA[$(element).html(html);]]></search>
+			<add><![CDATA[
+			//BOF Product Series 
+			imagePreview();
+			pdsListRolloever();
+			//EOF Product Series]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/product/product.tpl">
+		<operation error="log">
+			<search position="before" index="1"><![CDATA[<?php if ($options) { ?>]]></search>
+			<add><![CDATA[
+			<!--BOF Product Series -->	 
+			<!--if this is a master then load list of slave products, if this is a slave product then load other slave products under the same master -->
+			<?php if(sizeof($pds) > 0) { ?>
+				<div class="price pds">
+					<?php if($display_add_to_cart){ ?>	
+						<?php echo $text_in_the_same_series; ?><br/>
+					<?php } else { ?>
+						<?php echo $no_add_to_cart_message; ?><br/>
+					<?php } ?>
+					<?php foreach ($pds as $p) { ?>
+						<a class="<?php echo $pds_enable_preview ? 'preview' : ''?> <?php echo ($p['product_id'] == $product_id) ? 'pds-current' : '' ?>"
+						title="<?php echo $p['product_name']; ?>"
+						href="<?php echo $p['product_link']; ?>"
+						rel="<?php echo $p['product_main_image']; ?>">
+							<img src="<?php echo $p['product_pds_image']; ?>" alt="<?php echo $p['product_name']; ?>" />
+						</a>
+					<?php } ?>
+				</div>
+			<?php } ?>
+			<?php if(!$display_add_to_cart){ ?>
+				<style>
+					/*Hide cart and options*/
+					#content .cart, .options, .buttons-cart, .input-qty, #product_buy, #product_options, #button-cart, .form-group {display: none !important;}
+					.price {margin-bottom: 15px}
+				</style>
+			<?php } ?>
+			<!--EOF Product Series -->]]></add>
+		</operation>
+	</file>
+</modification>

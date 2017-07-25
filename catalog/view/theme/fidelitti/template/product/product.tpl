@@ -251,13 +251,9 @@
             <?php if ($quantity == 0){ ?> 
               	<input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
                 <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_pred_order; ?></button>
-		<button type="submit" id="one_click" data-loading-text="<?php echo $text_loading; ?>" class="button contrast"><i class="fa fa-shopping-cart"></i> <?php echo $button_cart; ?></button>
-          
             <? }else{ ?>				
                 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
                 <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
-		<button type="submit" id="one_click" data-loading-text="<?php echo $text_loading; ?>" class="button contrast"><i class="fa fa-shopping-cart"></i> <?php echo $button_cart; ?></button>
-          
             <? } ?>
                   <!-- Button fastorder -->
                  <?php  echo $fastorder;?>

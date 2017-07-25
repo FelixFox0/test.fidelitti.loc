@@ -251,9 +251,13 @@
             <?php if ($quantity == 0){ ?> 
               	<input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
                 <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_pred_order; ?></button>
+		<button type="submit" id="one_click" data-loading-text="<?php echo $text_loading; ?>" class="button contrast"><i class="fa fa-shopping-cart"></i> <?php echo $button_cart; ?></button>
+          
             <? }else{ ?>				
                 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
                 <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
+		<button type="submit" id="one_click" data-loading-text="<?php echo $text_loading; ?>" class="button contrast"><i class="fa fa-shopping-cart"></i> <?php echo $button_cart; ?></button>
+          
             <? } ?>
                   <!-- Button fastorder -->
                  <?php  echo $fastorder;?>
@@ -639,7 +643,29 @@ $(document).ready(function() {
 
 
 
-
+<script type="text/javascript">
+$('#one_click').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/product/oneclickbye&product_id=<?php echo $product_id; ?>',
+		type: 'post',
+		data: 'name=test&phone=000&mail=test@test.ua' ,
+		dataType: 'json',
+		beforeSend: function() {
+			
+		},
+		complete: function() {
+			
+		},
+		success: function(json) {			
+			if (json['success']) {
+                            alert("Ваш заказ получен");	
+			}else{
+                            alert("Ваш заказ не получен");
+                        }
+		}
+	});
+});
+</script> 
 
 
 

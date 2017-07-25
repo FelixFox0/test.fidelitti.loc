@@ -123,7 +123,7 @@
         data['product_id']    = $('#product_id<?php echo $product_id;?>').val();
         data['product_link']  = '<?php echo $product_link;?>';
 
-        $.ajax({
+        /*$.ajax({
             url: 'index.php?route=product/fastorder/sender',
             type: 'post',
             data: {name: data['name'], phone: data['phone'], mail: data['mail'], comment: data['comment'],
@@ -154,6 +154,39 @@
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
-        });
+        });*/
+        $.ajax({
+		url: 'index.php?route=product/product/oneclickbye&product_id=<?php echo $product_id; ?>',
+		type: 'post',
+		data: 'name='+ data['name'] + '&phone=' + data['phone'] + '&mail=' + data['mail'],
+		dataType: 'json',
+		beforeSend: function() {
+                    // Do form valdation
+                    if (!$('#phone<?php echo $product_id;?>').val()
+                            // || !$('#name<?php echo $product_id;?>').val()
+                            // || !$('#mail<?php echo $product_id;?>').val()
+                            // || !$('#count<?php echo $product_id;?>').val())
+                        )
+                    {
+                        $('#error-msg').show();
+                        return false;
+                    }else{
+                        $('#error-msg').hide();
+                        $('#wait-msg').show();
+                    }
+		},
+		complete: function() {
+                    $('#error-msg').hide();
+                    $('#bs-fastorder<?php echo $product_id;?>').modal('hide');
+		},
+		success: function(json) {			
+			/*if (json['success']) {
+                            alert("Ваш заказ получен");	
+			}else{
+                            alert("Ваш заказ не получен");
+                        }*/
+                        $('#fastorder-success<?php echo $product_id;?>').modal('show');
+		}
+	});
     });
 </script>

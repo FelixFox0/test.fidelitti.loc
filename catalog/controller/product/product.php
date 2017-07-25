@@ -739,4 +739,103 @@ $data['weight'] = number_format($product_info['weight'], 0).' '.$this->weight->g
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+        
+        public function oneclickbye() {
+//            var_dump($this->request->post);
+            $data['invoice_prefix'] = $this->config->get('config_invoice_prefix');
+            $data['store_id'] = $this->config->get('config_store_id');
+            $data['store_name'] = $this->config->get('config_name');
+            $data['store_url'] = $this->config->get('config_url');               
+            $data['firstname'] = $this->request->post['name'];
+            $data['email'] = $this->request->post['mail'];
+            $data['telephone'] = $this->request->post['phone'];
+            $data['payment_firstname'] = $this->request->post['name'];
+            $data['shipping_firstname'] = $this->request->post['name'];
+            $data['customer_id'] = '1';
+            $data['customer_group_id'] = '1';
+            $data['lastname'] = '';
+            $data['fax'] = '';
+            
+            $data['payment_lastname'] = '';
+            $data['payment_company'] = '';
+            $data['payment_address_1'] = '';
+            $data['payment_address_2'] = '';
+            $data['payment_city'] = '';
+            $data['payment_postcode'] = '';
+            $data['payment_country'] = '';//
+            $data['payment_country_id'] = '';//
+            $data['payment_zone'] = '';//
+            $data['payment_zone_id'] = '';//
+            $data['payment_address_format'] = '';
+            $data['payment_method'] = 'Оплата при доставке';//
+            $data['payment_code'] = 'cod';//
+            
+            $data['shipping_lastname'] = '';
+            $data['shipping_company'] = '';
+            $data['shipping_address_1'] = '';
+            $data['shipping_address_2'] = '';
+            $data['shipping_city'] = '';
+            $data['shipping_postcode'] = '';
+            $data['shipping_country'] = '';//
+            $data['shipping_country_id'] = '';//
+            $data['shipping_zone'] = '';//
+            $data['shipping_zone_id'] = '';//
+            $data['shipping_address_format'] = '';
+            $data['shipping_method'] = 'Доставка с фиксированной стоимостью доставки';//
+            $data['shipping_code'] = 'flat.flat';//
+            $data['comment'] = '';
+            
+            
+            $data['affiliate_id'] = 0;
+            $data['commission'] = 0;
+            $data['marketing_id'] = 0;
+            $data['tracking'] = '';
+            $data['language_id'] = $this->config->get('config_language_id');
+            $data['currency_id'] = $this->currency->getId($this->session->data['currency']);
+            $data['currency_code'] = $this->session->data['currency'];
+            $data['currency_value'] = $this->currency->getValue($this->session->data['currency']);
+            $data['ip'] = $this->request->server['REMOTE_ADDR'];
+            $data['forwarded_ip'] = '';
+            if (isset($this->request->server['HTTP_USER_AGENT'])) {
+                $data['user_agent'] = $this->request->server['HTTP_USER_AGENT'];
+            } else {
+                $data['user_agent'] = '';
+            }
+            if (isset($this->request->server['HTTP_ACCEPT_LANGUAGE'])) {
+                $data['accept_language'] = $this->request->server['HTTP_ACCEPT_LANGUAGE'];
+            } else {
+                $data['accept_language'] = '';
+            }
+            $this->load->model('catalog/product');
+            $product_info = $this->model_catalog_product->getProduct($this->request->get['product_id']);
+            if(isset($product_info['special'])){
+                $price = $product_info['special'];
+            }else{
+                $price = $product_info['price'];
+            }
+            $data['products'] = array();
+            $data['products'][0] = array(
+                'product_id' => $this->request->get['product_id'],
+                'name' => $product_info['name'],
+                'model' => $product_info['model'],
+                'quantity' => 1,
+                'subtract' => $product_info['subtract'],
+                'tax' => $this->tax->getTax($product_info['price'], $product_info['tax_class_id']),
+                'price' => $price,
+                'total' => $price,
+                'reward' => $product_info['reward'],
+                'option' => array(),
+                'download' => array(),
+                
+                
+            );
+            $data['total'] = $price;
+            $this->load->model('checkout/order');
+            $order_id = $this->model_checkout_order->addOrder($data);
+            $this->model_checkout_order->addOrderHistory($order_id, $this->config->get('cod_order_status_id'));
+            
+            $json['success'] = true;
+            $this->response->addHeader('Content-Type: application/json');
+            $this->response->setOutput(json_encode($json));
+        }
 }
